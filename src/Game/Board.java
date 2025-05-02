@@ -53,7 +53,7 @@ public class Board {
         board[6][0]="相";board[7][0]="马";board[8][0]="车";
 
         board[0][9]="车";board[1][9]="马";board[2][9]="相";
-        board[3][9]="士";board[4][9]="帅";board[5][9]="士";
+        board[3][9]="士";board[4][9]="将";board[5][9]="士";
         board[6][9]="相";board[7][9]="马";board[8][9]="车";
 
         board[0][3]=board[2][3]=board[4][3]=board[6][3]=board[8][3]="兵";
