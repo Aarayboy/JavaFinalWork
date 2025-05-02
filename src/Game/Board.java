@@ -68,6 +68,15 @@ public class Board {
         for (Piece piece : pieces) {
             if(piece.x==ox && piece.y == oy){
                 if(piece.move(nx,ny,this.board)) {
+                    //若新位置有棋子,则被吃
+                    if(board[nx][ny] != "") {
+                        for(Piece ppiece : pieces){
+                            if(ppiece.x == nx && ppiece.y == ny){
+                                ppiece.alive = false;
+                            }
+                        }
+                    }
+
                     board[nx][ny] = board[ox][oy];
                     board[ox][ox] = "";
                 }
