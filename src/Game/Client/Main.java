@@ -1,9 +1,7 @@
-package Game;
+package Game.Client;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 
 public class Main {
     public void main(String[] args) throws Exception {
@@ -23,6 +21,7 @@ public class Main {
         int length = Reader.read(buffer);
         Writer.write("Successfully Connected");
         Writer.flush();
+
 
 
         //服务器分配红/黑方,初始时间
@@ -46,6 +45,8 @@ public class Main {
         }
 
 
+
+        //游戏结束，关闭链接
         Writer.close();
         Reader.close();
         socket.close();

@@ -1,4 +1,4 @@
-package Game;
+package Game.Client;
 
 import static java.lang.Math.*;
 
@@ -15,7 +15,7 @@ abstract public class Piece{
         this.alive = true;
     }
     
-    abstract boolean movale(int x,int y,String[][] board);
+    abstract boolean movable(int x, int y, String[][] board);
     
     //修改该棋子的坐标
     void set_loc(int x,int y){
@@ -45,7 +45,7 @@ abstract public class Piece{
 
     //尝试将该棋子移动到（x，y）
     boolean move(int x,int y,String[][] board){
-        if(movale(x,y,board)){
+        if(movable(x,y,board)){
             set_loc(x,y);
             return true;
         }
@@ -59,7 +59,7 @@ class Car extends Piece {
     }
 
     @Override
-    boolean movale(int x, int y, String[][] board) {
+    boolean movable(int x, int y, String[][] board) {
         if(!inboard(x,y)) return false;
         if(this.x == x){
             for(int i=min(this.y,y);i<max(this.y,y);i++)
@@ -79,8 +79,8 @@ class Horse extends Piece{
     }
 
     @Override
-    boolean movale(int x, int y, String[][] board) {
-        if(!inboard(x,y) ||abs(x-this.x)+abs(y-this.y) != 5) return false;
+    boolean movable(int x, int y, String[][] board) {
+        if(!inboard(x,y) ||(x-this.x)*(x-this.x)+(y-this.y)*(y-this.y) != 5) return false;
         if(abs(x-this.x) == 2 && board[(this.x+x)/2][y] != "")
             return false;
         else if (abs(y - this.y) == 2 && board[x][(y+this.y)/2] != "")
@@ -95,7 +95,7 @@ class Cannon extends Piece{
     }
 
     @Override
-    boolean movale(int x, int y, String[][] board) {
+    boolean movable(int x, int y, String[][] board) {
         if(!inboard(x,y)) return false;
         int barrier=0;
         if(this.x == x){
@@ -122,7 +122,7 @@ class Solider extends Piece{
     }
 
     @Override
-    boolean movale(int x, int y, String[][] board) {
+    boolean movable(int x, int y, String[][] board) {
         if(!inboard(x,y)) return false;
         if(y-this.y == -1) return false;
         if(pass && abs(x-this.x) + abs(y-this.y) == 1) return true;
@@ -142,7 +142,7 @@ class Minister extends Piece{
     }
 
     @Override
-    boolean movale(int x, int y, String[][] board) {
+    boolean movable(int x, int y, String[][] board) {
         if(!inboard(x,y) && !pass(x,y)) return false;
 
         if(abs(x-this.x)==2 && abs(y-this.y)==2) return true;
@@ -158,7 +158,7 @@ class Mandarin extends Piece{
 
 
     @Override
-    boolean movale(int x, int y, String[][] board) {
+    boolean movable(int x, int y, String[][] board) {
         if(!inboard(x,y) || out(x,y)) return false;
         if(abs(x-this.x)==1 && abs(y-this.y)==1) return true;
         return false;
@@ -173,7 +173,7 @@ class King extends Piece{
 
 
     @Override
-    boolean movale(int x, int y, String[][] board) {
+    boolean movable(int x, int y, String[][] board) {
         if(!inboard(x,y) || out(x,y)) return false;
         if((x-this.x)*(x-this.x) + (y-this.y)*(y-this.y) == 1) return true;
         return false;

@@ -1,5 +1,4 @@
-package Game;
-
+package Game.Server;
 
 public class Board {
     String[][] board = new String[9][10];
@@ -63,6 +62,7 @@ public class Board {
 
     }
 
+
     //将位于（ox，oy）的棋子移动到（nx,ny）
     void move(int ox,int oy,int nx,int ny){
         for (Piece piece : pieces) {
@@ -76,7 +76,6 @@ public class Board {
                             }
                         }
                     }
-
                     board[nx][ny] = board[ox][oy];
                     board[ox][ox] = "";
                 }
