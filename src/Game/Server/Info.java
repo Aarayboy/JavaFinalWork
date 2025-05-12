@@ -1,8 +1,19 @@
 package Game.Server;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Calendar;
+import java.io.*;
+import java.util.*;
+
+//类别
+enum Process
+{   login,
+    connecting,
+    normal_game,
+    short_game,
+    gaming,
+    win,
+    lose,
+    want_lose
+};
 
 
 public class Info implements Serializable{
@@ -17,11 +28,12 @@ public class Info implements Serializable{
     String[][] board;   //棋盘信息
     boolean red;        //Client的红黑身份
     boolean turn;       //当前是否轮到Client下棋
-    Boolean winner;     //null表示尚未决出胜负,1表示获胜,0表示失败
+    Process process;    //游戏进程
 
 
 
     //Client 向 Server 发送
     int ox,oy,nx,ny;    //(ox,oy) -> (nx,ny)
+    String account,password;
 
 }
