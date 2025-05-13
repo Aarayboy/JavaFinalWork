@@ -23,7 +23,7 @@ public class Main {
 
         // 创建读取缓冲区
         char[] buffer = new char[1024];
-        int length = Reader.read(buffer);
+//        int length = Reader.read(buffer);
         Writer.write("Successfully Connected from " + localHost.getHostAddress());
         Writer.flush();
 

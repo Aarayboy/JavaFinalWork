@@ -7,9 +7,12 @@ import java.nio.charset.StandardCharsets;
 public class ClientServer extends Thread{
     private Socket socket;
     private Info info;
+    private Account account;
+    private Boolean login;
 
     public ClientServer(Socket socket){
         this.socket = socket;
+        this.account = null;
     }
 
 
@@ -17,7 +20,6 @@ public class ClientServer extends Thread{
     public void run(){
         ObjectInputStream ois = null;
         ObjectOutputStream oos = null;
-        int time;
 
         try {
             ois = new ObjectInputStream(this.socket.getInputStream());
@@ -31,12 +33,15 @@ public class ClientServer extends Thread{
                         }
                         break;
                     case normal_game:
-                        time = 15;
+                        if(!login) break;
+                        Match.normal_match_queue.add(this.socket);
                         break;
                     case short_game:
-                        time = 1;
+                        if(!login) break;
+                        Match.short_match_queue.add(this.socket);
                         break;
                     case connecting:
+                        break;
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -45,11 +50,8 @@ public class ClientServer extends Thread{
     }
 
     public boolean login(String account, String password){
+        this.account = Account.find(account,password);
         return true;
-    };
-
-    public void game(int time,ObjectOutputStream oos,ObjectInputStream ois){
-
     };
 
 }

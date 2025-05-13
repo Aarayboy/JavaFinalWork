@@ -10,9 +10,7 @@ public class Player {
     String[][] board = new String[9][10];
     Piece[] pieces = new Piece[16];
 
-    Player(int remain_all,int remain,boolean red) {
-        this.remain_all = remain_all;
-        this.remain = remain;
+    Player(boolean red) {
         this.red = red;
 
         pieces[0]=new Car(0,0,this.red);
@@ -62,8 +60,8 @@ public class Player {
                 this.board[i][j] = new_board[i][j];
     }
 
-    //发送信息
-    void send(){
-
+    //开始游戏
+    void game(int time){
+        this.remain_all = time;
     }
 }
