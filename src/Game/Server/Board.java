@@ -1,7 +1,10 @@
 package Game.Server;
 
 public class Board {
+    //棋盘情况
     String[][] board = new String[9][10];
+
+    //棋子信息
     Piece[] pieces = new Piece[32];
 
     {
