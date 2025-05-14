@@ -135,6 +135,4 @@ public class Info implements Serializable{
 
 ## 棋盘信息储存
 
-
-
-![截屏2025-05-14 20.24.53](../../../Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2025-05-14%2020.24.53.png)
+![棋盘信息](%E6%A3%8B%E7%9B%98%E4%BF%A1%E6%81%AF.png)
