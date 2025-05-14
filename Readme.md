@@ -42,20 +42,29 @@
 
 
 ```java
+package Game.Client;
+
+import java.io.*;
+import java.util.*;
 
 //状态
 enum Process
 {
 
-    connecting,             //常态
+    connecting,             //常态，表示服务器和客户端可以正常通信
+    gaming,                 //常态，表示客户端处于游戏状态
+    unconnecting,           //异常，表示服务器和客户端断开连接
 
 
     //客户端
     login,                  //客户端发送登录信号
+
     normal_game,            //客户端发送正常模式信号
     short_game,             //客户端发送快速模式信号
+
     withdraw,               //客户端发送悔棋信号
     want_even,              //客户端发送请求和棋信号
+    want_lose,              //客户端发送投降信号
 
     //服务器
     login_success,          //服务器向客户端发送登录结果
@@ -63,7 +72,7 @@ enum Process
     game_start,             //服务器向客户端发送游戏开始信号
     win,                    //服务器向客户端发送游戏结果
     lose,                   //服务器向客户端发送游戏结果
-    want_lose,              //服务器向客户端发送游戏结果
+
 
 };
 
@@ -72,10 +81,10 @@ public class Info implements Serializable{
     @Serial
     private static final long serialVersionUID = -2095916884810199532L;
 
-    //时间戳
+    //时间戳(需修改，选择一个合适的类用于记录局时和步时)
     Calendar calendar;
     long start_time;
-    
+
     Process process;    //游戏进程以及游戏结果
 
 
